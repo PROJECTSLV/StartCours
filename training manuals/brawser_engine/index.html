@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архитектура браузера</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">Архитектура браузера</h1>
+                <p class="subtitle">Изучите внутреннее устройство современных веб-браузеров</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span>7 основных компонентов</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-code"></i>
+                        <span>Интерактивная схема</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-book"></i>
+                        <span>Подробные объяснения</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="architecture">
+            <!-- Пользовательский интерфейс -->
+            <div class="layer-card" data-layer="user-interface">
+                <div class="card-header">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Пользовательский интерфейс</h3>
+                </div>
+                <div class="card-content">
+                    <p>Адресная строка, кнопки, меню и другие элементы управления</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>Пользовательский интерфейс</h4>
+                        <p>Включает все элементы, с которыми взаимодействует пользователь: адресную строку, кнопки назад/вперед, закладки, меню настроек и другие элементы управления.</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">UI Elements</span>
+                            <span class="feature-tag">Navigation</span>
+                            <span class="feature-tag">Controls</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('user-interface')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Движок браузера -->
+            <div class="layer-card" data-layer="browser-engine">
+                <div class="card-header">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Движок браузера</h3>
+                </div>
+                <div class="card-content">
+                    <p>Связывает интерфейс и движок рендеринга</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>Движок браузера</h4>
+                        <p>Координирует работу всех компонентов браузера. Обрабатывает пользовательский ввод, управляет загрузкой страниц и обеспечивает взаимодействие между различными модулями.</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">Coordination</span>
+                            <span class="feature-tag">Management</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('browser-engine')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Движок рендеринга -->
+            <div class="layer-card" data-layer="rendering-engine">
+                <div class="card-header">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Движок рендеринга</h3>
+                </div>
+                <div class="card-content">
+                    <p>Отвечает за отображение веб-страниц</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>Движок рендеринга</h4>
+                        <p>Парсит HTML и CSS, строит DOM и CSSOM деревья, создает дерево рендеринга и выполняет отрисовку. Примеры: Blink (Chrome), Gecko (Firefox), WebKit (Safari).</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">HTML/CSS Parsing</span>
+                            <span class="feature-tag">Layout</span>
+                            <span class="feature-tag">Painting</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('rendering-engine')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сетевые возможности -->
+            <div class="layer-card" data-layer="networking">
+                <div class="card-header">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Сетевые возможности</h3>
+                </div>
+                <div class="card-content">
+                    <p>Обрабатывает HTTP/HTTPS запросы</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>Сетевые возможности</h4>
+                        <p>Обрабатывает сетевые вызовы через HTTP/HTTPS протоколы. Отвечает за кэширование, управление соединениями, безопасность и обработку запросов/ответов от серверов.</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">HTTP/HTTPS</span>
+                            <span class="feature-tag">Caching</span>
+                            <span class="feature-tag">Security</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('networking')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript интерпретатор -->
+            <div class="layer-card" data-layer="javascript-interpreter">
+                <div class="card-header">
+                    <i class="fab fa-js-square"></i>
+                    <h3>JavaScript интерпретатор</h3>
+                </div>
+                <div class="card-content">
+                    <p>Выполняет JavaScript код</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>JavaScript интерпретатор</h4>
+                        <p>Парсит и выполняет JavaScript код. Современные браузеры используют JIT-компиляцию для оптимизации производительности. Примеры: V8 (Chrome), SpiderMonkey (Firefox).</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">V8 Engine</span>
+                            <span class="feature-tag">JIT Compilation</span>
+                            <span class="feature-tag">Execution</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('javascript-interpreter')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Бэкенд пользовательского интерфейса -->
+            <div class="layer-card" data-layer="ui-backend">
+                <div class="card-header">
+                    <i class="fas fa-toolbox"></i>
+                    <h3>Бэкенд UI</h3>
+                </div>
+                <div class="card-content">
+                    <p>Обеспечивает отрисовку базовых виджетов</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>Бэкенд пользовательского интерфейса</h4>
+                        <p>Обеспечивает отрисовку базовых виджетов и элементов интерфейса. Использует системные API для рисования окон и управления событиями. Работает напрямую с операционной системой.</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">OS API</span>
+                            <span class="feature-tag">Rendering</span>
+                            <span class="feature-tag">Events</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('ui-backend')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Хранилище данных -->
+            <div class="layer-card" data-layer="data-storage">
+                <div class="card-header">
+                    <i class="fas fa-database"></i>
+                    <h3>Хранилище данных</h3>
+                </div>
+                <div class="card-content">
+                    <p>Локальное хранение информации</p>
+                </div>
+                <div class="card-hover">
+                    <div class="hover-content">
+                        <h4>Хранилище данных</h4>
+                        <p>Обеспечивает хранение данных на стороне клиента. Включает Local Storage, Session Storage, IndexedDB, Cookies, Web SQL и кэш приложений. Позволяет сохранять данные между сессиями.</p>
+                        <div class="hover-features">
+                            <span class="feature-tag">Local Storage</span>
+                            <span class="feature-tag">Cookies</span>
+                            <span class="feature-tag">IndexedDB</span>
+                        </div>
+                        <button class="info-btn" onclick="showMoreInfo('data-storage')">
+                            <i class="fas fa-info-circle"></i>
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="instructions">
+            <div class="instruction-content">
+                <i class="fas fa-mouse-pointer"></i>
+                <p>Наведите курсор на любой компонент для подробной информации</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Заголовок</h2>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+                <div class="modal-links">
+                    <h4>Полезные ссылки для изучения:</h4>
+                    <div id="modalLinks" class="links-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

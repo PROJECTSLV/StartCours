@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архитектура браузера</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .architecture {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            gap: 15px;
+            height: 80vh;
+            position: relative;
+        }
+
+        .layer {
+            border: 3px solid rgba(255,255,255,0.8);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .layer:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .layer-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+
+        .layer-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 12px;
+            text-align: center;
+            z-index: 3;
+        }
+
+        .layer:hover .layer-info {
+            opacity: 1;
+        }
+
+        .info-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .info-text {
+            font-size: 1.1em;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+
+        /* Цвета для различных слоев */
+        .user-interface {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            grid-column: 1 / 3;
+            height: 80px;
+        }
+
+        .browser-engine {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            grid-column: 1 / 3;
+            height: 60px;
+        }
+
+        .rendering-engine {
+            background: linear-gradient(45deg, #FFD166, #FF9E64);
+            grid-column: 1 / 3;
+            height: 200px;
+        }
+
+        .networking {
+            background: linear-gradient(45deg, #118AB2, #073B4C);
+        }
+
+        .javascript-interpreter {
+            background: linear-gradient(45deg, #06D6A0, #04A777);
+        }
+
+        .ui-backend {
+            background: linear-gradient(45deg, #7209B7, #560BAD);
+        }
+
+        .data-storage {
+            background: linear-gradient(45deg, #F15BB5, #9B5DE5);
+            grid-column: 1 / 3;
+            height: 100px;
+        }
+
+        /* Анимация для привлечения внимания */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .instructions {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Архитектура браузера</h1>
+            <p>Изучите внутреннее устройство современных веб-браузеров</p>
+        </div>
+
+        <div class="architecture">
+            <!-- Пользовательский интерфейс -->
+            <div class="layer user-interface">
+                <div class="layer-title">Пользовательский интерфейс</div>
+                <div class="layer-info">
+                    <div class="info-title">Пользовательский интерфейс</div>
+                    <div class="info-text">
+                        Включает адресную строку, кнопки назад/вперед, закладки, меню и другие элементы управления. 
+                        Это то, что пользователь видит и с чем взаимодействует.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Движок браузера -->
+            <div class="layer browser-engine">
+                <div class="layer-title">Движок браузера</div>
+                <div class="layer-info">
+                    <div class="info-title">Движок браузера</div>
+                    <div class="info-text">
+                        Связывает интерфейс и движок рендеринга. Обрабатывает пользовательский ввод, 
+                        управляет загрузкой страниц и координирует работу всех компонентов.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Движок рендеринга -->
+            <div class="layer rendering-engine">
+                <div class="layer-title">Движок рендеринга</div>
+                <div class="layer-info">
+                    <div class="info-title">Движок рендеринга</div>
+                    <div class="info-text">
+                        Отвечает за отображение веб-страниц. Парсит HTML и CSS, строит DOM и CSSOM деревья, 
+                        создает дерево рендеринга и выполняет отрисовку. Примеры: Blink (Chrome), Gecko (Firefox), WebKit (Safari).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сетевые возможности -->
+            <div class="layer networking">
+                <div class="layer-title">Сетевые возможности</div>
+                <div class="layer-info">
+                    <div class="info-title">Сетевые возможности</div>
+                    <div class="info-text">
+                        Обрабатывает сетевые вызовы через HTTP/HTTPS протоколы. Отвечает за кэширование, 
+                        управление соединениями и безопасность. Обрабатывает запросы и ответы от серверов.
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript интерпретатор -->
+            <div class="layer javascript-interpreter">
+                <div class="layer-title">JavaScript интерпретатор</div>
+                <div class="layer-info">
+                    <div class="info-title">JavaScript интерпретатор</div>
+                    <div class="info-text">
+                        Парсит и выполняет JavaScript код. Современные браузеры используют JIT-компиляцию 
+                        для оптимизации производительности. Примеры: V8 (Chrome), SpiderMonkey (Firefox), JavaScriptCore (Safari).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Бэкенд пользовательского интерфейса -->
+            <div class="layer ui-backend">
+                <div class="layer-title">Бэкенд пользовательского интерфейса</div>
+                <div class="layer-info">
+                    <div class="info-title">Бэкенд пользовательского интерфейса</div>
+                    <div class="info-text">
+                        Обеспечивает отрисовку базовых виджетов и элементов интерфейса. Использует 
+                        системные API для рисования окон и управления событиями. Работает с операционной системой.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Хранилище данных -->
+            <div class="layer data-storage">
+                <div class="layer-title">Хранилище данных</div>
+                <div class="layer-info">
+                    <div class="info-title">Хранилище данных</div>
+                    <div class="info-text">
+                        Обеспечивает хранение данных на стороне клиента. Включает Local Storage, Session Storage, 
+                        IndexedDB, Cookies, Web SQL и кэш приложений. Позволяет сохранять данные между сессиями.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p>Наведите курсор на любой компонент, чтобы узнать о нем подробнее</p>
+        </div>
+    </div>
+
+    <script>
+        // Добавляем анимацию пульсации для привлечения внимания
+        document.addEventListener('DOMContentLoaded', function() {
+            const layers = document.querySelectorAll('.layer');
+            
+            layers.forEach(layer => {
+                layer.addEventListener('mouseenter', function() {
+                    this.classList.add('pulse');
+                });
+                
+                layer.addEventListener('mouseleave', function() {
+                    this.classList.remove('pulse');
+                });
+            });
+
+            // Автоматическое мигание первого элемента для демонстрации
+            setTimeout(() => {
+                layers[0].classList.add('pulse');
+                setTimeout(() => {
+                    layers[0].classList.remove('pulse');
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

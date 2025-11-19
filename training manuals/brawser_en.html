@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архитектура браузера</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.4em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .architecture {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(5, auto);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .layer {
+            border: 3px solid rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        .layer:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .layer-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .layer-icon {
+            font-size: 2.2em;
+            margin-right: 20px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            flex-shrink: 0;
+        }
+
+        .layer-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: white;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .layer-content {
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            padding-left: 80px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .layer-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            color: white;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 17px;
+            z-index: 3;
+            overflow-y: auto;
+        }
+
+        .layer:hover .layer-info {
+            opacity: 1;
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .info-icon {
+            font-size: 2em;
+            margin-right: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .info-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 0;
+            color: #fff;
+        }
+
+        .info-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .info-text::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .info-text::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .info-text::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .info-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .info-link i {
+            margin-right: 8px;
+            font-size: 1em;
+        }
+
+        .info-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Цвета для различных слоев */
+        .user-interface {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            grid-column: 1 / 3;
+            min-height: 140px;
+        }
+
+        .browser-engine {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            grid-column: 1 / 3;
+            min-height: 140px;
+        }
+
+        .rendering-engine {
+            background: linear-gradient(135deg, #FFD166, #FF9E64);
+            grid-column: 1 / 3;
+            min-height: 220px;
+        }
+
+        .networking {
+            background: linear-gradient(135deg, #118AB2, #073B4C);
+            min-height: 280px;
+        }
+
+        .javascript-interpreter {
+            background: linear-gradient(135deg, #06D6A0, #04A777);
+            min-height: 280px;
+        }
+
+        .ui-backend {
+            background: linear-gradient(135deg, #7209B7, #560BAD);
+            min-height: 280px;
+        }
+
+        .data-storage {
+            background: linear-gradient(135deg, #F15BB5, #9B5DE5);
+            grid-column: 1 / 3;
+            min-height: 160px;
+        }
+
+        /* Анимация для привлечения внимания */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .instructions {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            font-size: 1.2em;
+            opacity: 0.9;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .instructions i {
+            margin-right: 10px;
+            font-size: 1.3em;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1100px) {
+            .architecture {
+                grid-template-columns: 1fr;
+            }
+            
+            .layer {
+                grid-column: 1 / 2 !important;
+            }
+            
+            .layer-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .layer-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .layer-content {
+                padding-left: 0;
+                text-align: center;
+            }
+            
+            .info-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .info-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .header p {
+                font-size: 1.1em;
+            }
+            
+            .layer {
+                padding: 20px;
+                min-height: 180px;
+            }
+            
+            .layer-title {
+                font-size: 1.4em;
+            }
+            
+            .layer-content {
+                font-size: 1em;
+            }
+            
+            .layer-info {
+                padding: 20px;
+            }
+            
+            .info-title {
+                font-size: 1.4em;
+            }
+            
+            .info-text {
+                font-size: 1em;
+            }
+            
+            .networking, .javascript-interpreter, .ui-backend {
+                min-height: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .layer {
+                min-height: 160px;
+            }
+            
+            .networking, .javascript-interpreter, .ui-backend {
+                min-height: 220px;
+            }
+            
+            .feature-tag {
+                font-size: 0.8em;
+                padding: 4px 8px;
+            }
+            
+            .info-link {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Архитектура браузера</h1>
+            <p>Изучите внутреннее устройство современных веб-браузеров. Наведите курсор на любой компонент для подробной информации.</p>
+        </div>
+
+        <div class="architecture">
+            <!-- Пользовательский интерфейс -->
+            <div class="layer user-interface">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="layer-title">Пользовательский интерфейс</div>
+                </div>
+                <div class="layer-content">
+                    Адресная строка, кнопки назад/вперед, закладки, меню и другие элементы управления
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="info-title">Пользовательский интерфейс</div>
+                    </div>
+                    <div class="info-text">
+                        Включает все элементы, с которыми взаимодействует пользователь: адресную строку, кнопки назад/вперед, 
+                        закладки, меню настроек, панель вкладок и другие элементы управления. Это видимая часть браузера, 
+                        обеспечивающая удобное взаимодействие с веб-контентом. Интерфейс должен быть интуитивно понятным 
+                        и обеспечивать быстрый доступ ко всем функциям браузера.
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">Адресная строка</span>
+                        <span class="feature-tag">Панель вкладок</span>
+                        <span class="feature-tag">Меню настроек</span>
+                        <span class="feature-tag">Закладки</span>
+                    </div>
+                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/UI" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Узнать больше на MDN
+                    </a>
+                </div>
+            </div>
+
+            <!-- Движок браузера -->
+            <div class="layer browser-engine">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="layer-title">Движок браузера</div>
+                </div>
+                <div class="layer-content">
+                    Связывает интерфейс и движок рендеринга, координирует работу всех компонентов
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="info-title">Движок браузера</div>
+                    </div>
+                    <div class="info-text">
+                        Связывает пользовательский интерфейс и движок рендеринга. Обрабатывает пользовательский ввод, 
+                        управляет загрузкой страниц и координирует работу всех компонентов браузера. 
+                        Это центральный координатор, обеспечивающий слаженную работу всех систем. Отвечает за 
+                        маршрутизацию событий и управление жизненным циклом веб-страниц.
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">Координация</span>
+                        <span class="feature-tag">Управление вводом</span>
+                        <span class="feature-tag">Загрузка страниц</span>
+                    </div>
+                    <a href="https://web.dev/howbrowserswork/" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Как работают браузеры
+                    </a>
+                </div>
+            </div>
+
+            <!-- Движок рендеринга -->
+            <div class="layer rendering-engine">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="layer-title">Движок рендеринга</div>
+                </div>
+                <div class="layer-content">
+                    Отвечает за отображение веб-страниц. Парсит HTML и CSS, строит DOM и выполняет отрисовку
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="info-title">Движок рендеринга</div>
+                    </div>
+                    <div class="info-text">
+                        Отвечает за преобразование HTML, CSS и JavaScript в визуальное представление. 
+                        Процесс включает парсинг HTML (построение DOM), парсинг CSS (построение CSSOM), 
+                        создание дерева рендеринга, расчет layout и отрисовку пикселей на экране.
+                        Популярные движки: Blink (Chrome, Edge), Gecko (Firefox), WebKit (Safari).
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">HTML/CSS парсинг</span>
+                        <span class="feature-tag">DOM/CSSOM</span>
+                        <span class="feature-tag">Layout</span>
+                        <span class="feature-tag">Painting</span>
+                    </div>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Critical Rendering Path
+                    </a>
+                </div>
+            </div>
+
+            <!-- Сетевые возможности -->
+            <div class="layer networking">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="layer-title">Сетевые возможности</div>
+                </div>
+                <div class="layer-content">
+                    Обрабатывает HTTP/HTTPS запросы, управляет кэшированием и обеспечивает безопасность
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="info-title">Сетевые возможности</div>
+                    </div>
+                    <div class="info-text">
+                        Обрабатывает все сетевые коммуникации браузера. Поддерживает HTTP/HTTPS протоколы, 
+                        управляет кэшированием ресурсов, обеспечивает безопасность (SSL/TLS) и оптимизирует 
+                        загрузку данных. Отвечает за быструю и безопасную передачу данных между клиентом и сервером.
+                        Также обрабатывает CORS, куки и управление сессиями.
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">HTTP/HTTPS</span>
+                        <span class="feature-tag">Кэширование</span>
+                        <span class="feature-tag">Безопасность</span>
+                        <span class="feature-tag">Оптимизация</span>
+                    </div>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        HTTP протокол
+                    </a>
+                </div>
+            </div>
+
+            <!-- JavaScript интерпретатор -->
+            <div class="layer javascript-interpreter">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <div class="layer-title">JavaScript интерпретатор</div>
+                </div>
+                <div class="layer-content">
+                    Выполняет JavaScript код, использует JIT-компиляцию для оптимизации производительности
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="info-title">JavaScript интерпретатор</div>
+                    </div>
+                    <div class="info-text">
+                        Парсит и выполняет JavaScript код. Современные движки используют JIT-компиляцию 
+                        для оптимизации производительности, включая inlining функций, hidden classes 
+                        и автоматическое управление памятью (garbage collection). 
+                        Популярные движки: V8 (Chrome), SpiderMonkey (Firefox), JavaScriptCore (Safari).
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">V8 Engine</span>
+                        <span class="feature-tag">JIT-компиляция</span>
+                        <span class="feature-tag">Оптимизация</span>
+                        <span class="feature-tag">Garbage Collection</span>
+                    </div>
+                    <a href="https://v8.dev/" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Движок V8
+                    </a>
+                </div>
+            </div>
+
+            <!-- Бэкенд пользовательского интерфейса -->
+            <div class="layer ui-backend">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fas fa-toolbox"></i>
+                    </div>
+                    <div class="layer-title">Бэкенд пользовательского интерфейса</div>
+                </div>
+                <div class="layer-content">
+                    Обеспечивает отрисовку базовых виджетов и взаимодействие с операционной системой
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-toolbox"></i>
+                        </div>
+                        <div class="info-title">Бэкенд пользовательского интерфейса</div>
+                    </div>
+                    <div class="info-text">
+                        Обеспечивает низкоуровневую отрисовку и взаимодействие с операционной системой. 
+                        Работает с системными API для рисования окон, обработки событий (мышь, клавиатура) 
+                        и управления буфером обмена. Абстрагирует различия между операционными системами,
+                        обеспечивая единообразное поведение браузера на разных платформах.
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">Системные API</span>
+                        <span class="feature-tag">Отрисовка</span>
+                        <span class="feature-tag">События</span>
+                        <span class="feature-tag">Интеграция с ОС</span>
+                    </div>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Web APIs
+                    </a>
+                </div>
+            </div>
+
+            <!-- Хранилище данных -->
+            <div class="layer data-storage">
+                <div class="layer-header">
+                    <div class="layer-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="layer-title">Хранилище данных</div>
+                </div>
+                <div class="layer-content">
+                    Обеспечивает хранение данных на стороне клиента: Local Storage, Cookies, IndexedDB и другие
+                </div>
+                <div class="layer-info">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="info-title">Хранилище данных</div>
+                    </div>
+                    <div class="info-text">
+                        Обеспечивает сохранение информации на клиентской стороне. Включает Local Storage 
+                        (постоянное хранение), Session Storage (хранение на время сессии), IndexedDB 
+                        (NoSQL база данных), Cookies (данные для сервера) и Cache API (кэширование ресурсов).
+                        Позволяет веб-приложениям работать офлайн и сохранять состояние между сессиями.
+                    </div>
+                    <div class="info-features">
+                        <span class="feature-tag">Local Storage</span>
+                        <span class="feature-tag">Cookies</span>
+                        <span class="feature-tag">IndexedDB</span>
+                        <span class="feature-tag">Cache API</span>
+                    </div>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" class="info-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        Web Storage API
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <i class="fas fa-mouse-pointer"></i>
+            <p>Наведите курсор на любой компонент, чтобы узнать о нем подробнее</p>
+        </div>
+    </div>
+
+    <script>
+        // Добавляем анимацию пульсации для привлечения внимания
+        document.addEventListener('DOMContentLoaded', function() {
+            const layers = document.querySelectorAll('.layer');
+            
+            layers.forEach(layer => {
+                layer.addEventListener('mouseenter', function() {
+                    this.classList.add('pulse');
+                });
+                
+                layer.addEventListener('mouseleave', function() {
+                    this.classList.remove('pulse');
+                });
+            });
+
+            // Автоматическое мигание первого элемента для демонстрации
+            setTimeout(() => {
+                layers[0].classList.add('pulse');
+                setTimeout(() => {
+                    layers[0].classList.remove('pulse');
+                }, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
