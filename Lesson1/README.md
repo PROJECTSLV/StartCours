@@ -21,5 +21,5 @@
 <!-- Встроенный скрипт -->
 <script>
   alert('hello, script!')
-</script> ```html```
+</script> 
 
