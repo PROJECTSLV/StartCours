@@ -21,8 +21,8 @@
 <!-- Встроенный скрипт -->
 <script>
   alert('hello, script!')
-</script>
-2. Взаимодействие с пользователем
+</script> ```html```
+### 2. Взаимодействие с пользователем
 javascript
 // Диалоговые окна
 alert('hello, script!');        // Простое уведомление
@@ -31,7 +31,7 @@ prompt('your name is?');        // Запрос ввода текста
 
 // Вывод в консоль браузера
 console.log('Welcome!');
-3. Переменные и типы данных
+### 3. Переменные и типы данных
 javascript
 // Объявление переменных
 let number = 5;                 // Число
@@ -55,7 +55,7 @@ let - переменная, которую можно изменять
 
 const - константа, нельзя переназначить
 
-4. Шаблонные строки (Template Literals)
+### 4. Шаблонные строки (Template Literals)
 javascript
 // Старый способ конкатенации
 const item2 = '<article class = "item">' +
@@ -84,7 +84,7 @@ const item4 = `
 
 Более читаемый код
 
-5. Оператор typeof
+### 5. Оператор typeof
 javascript
 console.log(typeof number);      // "number"
 console.log(typeof $tring);      // "string"
