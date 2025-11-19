@@ -23,3 +23,13 @@
   alert('hello, script!')
 </script> 
 
+#2. Взаимодействие с пользователем
+```html
+javascript
+// Диалоговые окна
+alert('hello, script!');        // Простое уведомление
+confirm('you are started?');    // Окно с подтверждением (OK/Отмена)
+prompt('your name is?');        // Запрос ввода текста
+
+// Вывод в консоль браузера
+console.log('Welcome!');
