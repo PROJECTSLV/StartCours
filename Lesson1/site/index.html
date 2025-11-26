@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title> Course Site </title>
+    </head>
+
+    <body>
+        <h1> Start Cours</h1>
+        <p> Content </p>
+        <p> More content <b> for you </b></p>
+        <p> and my favorite content <i> on this page </i></p>
+        <b> Hello friends </b>
+        <i> my name Serj </i>
+
+        <p>
+            <a href="https://github.com/Gabryelf" target="_blank"> My Git Hub </a>
+        </p>
+
+        <img src="https://avatars.githubusercontent.com/u/145398532?v=4" alt="avatar">
+
+        <ul>
+            <li>My work 1</li>
+            <li>My work 2</li>
+            <li>My work 3</li>
+        </ul>
+
+        <ol> 
+            <li>My work</li>
+            <li>My work</li>
+            <li>My work</li>
+        </ol>
+
+        <form action="#">
+            <input type="text" id="name">
+            <label for="name"> NAME </label>
+            <input type="password" id="pass">
+            <label for="pass"> PASSWORD </label>
+
+            <button type="submit"> SEND </button>
+        </form>
+
+        <a href="content/page1.html">
+            <button> NEXT </button>
+        </a>
+
+        <button onclick="goToPage()" class="button"> GO TO PAGE </button>
+        <style>
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+
+        <script>
+            function goToPage() {
+                window.location.href = 'content/page1.html';
+            }
+        </script>
+        
+        
+
+    </body>
+
+    
+
+</html>
