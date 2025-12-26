@@ -1,0 +1,115 @@
+/* Сброс стандартных отступов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Учитываем padding и border в размерах */
+}
+
+/* Стили для всей страницы */
+body {
+    font-family: Arial, sans-serif; /* Шрифт для всей страницы */
+    background-color: #f0f2f5; /* Цвет фона страницы */
+    color: #333; /* Цвет текста */
+    line-height: 1.5; /* Межстрочный интервал */
+    padding: 20px; /* Отступы по краям страницы */
+}
+
+/* Стили для заголовка */
+.header {
+    text-align: center; /* Выравнивание по центру */
+    margin-bottom: 40px; /* Отступ снизу */
+    padding: 20px; /* Внутренние отступы */
+    background-color: white; /* Белый фон */
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Легкая тень */
+}
+
+/* Заголовок первого уровня */
+.header h1 {
+    color: #2c3e50; /* Темно-синий цвет */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+/* Общий блок для всех контейнеров */
+.containers {
+    display: flex; /* Используем flexbox для расположения */
+    flex-wrap: wrap; /* Разрешаем перенос на новую строку */
+    justify-content: center; /* Центрируем контейнеры */
+    gap: 20px; /* Расстояние между контейнерами */
+    margin-bottom: 30px; /* Отступ снизу */
+}
+
+/* Стили для каждого контейнера */
+.container {
+    width: 300px; /* Ширина контейнера */
+    background-color: white; /* Белый фон */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Тень для объема */
+}
+
+/* Заголовки внутри контейнеров */
+.container h2 {
+    color: #4a6fa5; /* Цвет заголовков */
+    margin-bottom: 15px; /* Отступ снизу */
+    font-size: 1.3rem; /* Размер шрифта */
+    text-align: center; /* Выравнивание по центру */
+}
+
+/* Стили для изображения */
+.container img {
+    width: 100%; /* Ширина 100% от контейнера */
+    height: 150px; /* Фиксированная высота */
+    object-fit: cover; /* Сохраняем пропорции */
+    border-radius: 5px; /* Скругленные углы */
+    margin-bottom: 15px; /* Отступ снизу */
+    border: 2px solid #eee; /* Рамка вокруг */
+}
+
+/* Стили для текста */
+.container p {
+    color: #555; /* Цвет текста */
+    text-align: justify; /* Выравнивание по ширине */
+}
+
+/* Стили для ненумерованного списка */
+ul {
+    list-style-type: disc; /* Маркеры в виде точек */
+    padding-left: 20px; /* Отступ слева */
+}
+
+/* Стили для нумерованного списка */
+ol {
+    list-style-type: decimal; /* Нумерация цифрами */
+    padding-left: 20px; /* Отступ слева */
+}
+
+/* Стили для элементов списка */
+li {
+    margin-bottom: 8px; /* Отступ снизу */
+    padding: 5px; /* Внутренние отступы */
+    background-color: #f8f9fa; /* Светлый фон */
+    border-radius: 4px; /* Скругленные углы */
+}
+
+/* Стили для футера */
+.footer {
+    text-align: center; /* Выравнивание по центру */
+    padding: 15px; /* Внутренние отступы */
+    background-color: white; /* Белый фон */
+    border-radius: 8px; /* Скругленные углы */
+    color: #666; /* Цвет текста */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .containers {
+        flex-direction: column; /* Контейнеры в колонку */
+        align-items: center; /* Центрирование */
+    }
+    
+    .container {
+        width: 100%; /* Ширина 100% */
+        max-width: 400px; /* Максимальная ширина */
+    }
+}

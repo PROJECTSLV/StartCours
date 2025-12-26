@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основы HTML и CSS - Пример контейнеров</title>
+    <style>
+        /* Основные стили для всей страницы */
+        * {
+            margin: 0; /* Убираем стандартные отступы браузера */
+            padding: 0; /* Убираем стандартные внутренние отступы */
+            box-sizing: border-box; /* Размер элемента включает padding и border */
+        }
+        
+        body {
+            font-family: Arial, sans-serif; /* Устанавливаем шрифт */
+            line-height: 1.6; /* Межстрочный интервал для лучшей читаемости */
+            background-color: #f5f7fa; /* Светлый фон всей страницы */
+            color: #333; /* Цвет основного текста */
+            padding: 20px; /* Отступы по краям страницы */
+        }
+        
+        /* Стили для заголовка страницы */
+        .header {
+            text-align: center; /* Выравниваем текст по центру */
+            margin-bottom: 30px; /* Отступ снизу */
+            padding-bottom: 15px; /* Внутренний отступ снизу */
+            border-bottom: 2px solid #4a6fa5; /* Линия под заголовком */
+        }
+        
+        .header h1 {
+            color: #2c3e50; /* Темно-синий цвет заголовка */
+            margin-bottom: 10px; /* Отступ снизу */
+        }
+        
+        /* Стили для общего контейнера, который будет содержать все три контейнера */
+        .container-wrapper {
+            display: flex; /* Используем flexbox для расположения контейнеров */
+            flex-wrap: wrap; /* Разрешаем перенос контейнеров на новую строку */
+            justify-content: center; /* Центрируем контейнеры по горизонтали */
+            gap: 30px; /* Расстояние между контейнерами */
+            max-width: 1200px; /* Максимальная ширина общего контейнера */
+            margin: 0 auto; /* Центрируем контейнер на странице */
+        }
+        
+        /* Общие стили для всех трех контейнеров */
+        .example-container {
+            background-color: white; /* Белый фон контейнера */
+            border-radius: 8px; /* Скругляем углы контейнера */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень контейнера для эффекта "поднятия" */
+            padding: 25px; /* Внутренние отступы контейнера */
+            width: 350px; /* Фиксированная ширина контейнера */
+            transition: transform 0.3s ease; /* Плавная анимация при наведении */
+        }
+        
+        /* Эффект при наведении на контейнер */
+        .example-container:hover {
+            transform: translateY(-5px); /* Сдвигаем контейнер вверх при наведении */
+        }
+        
+        /* Стили для заголовков внутри контейнеров */
+        .container-title {
+            font-size: 1.4rem; /* Размер шрифта заголовка */
+            color: #4a6fa5; /* Цвет заголовка контейнера */
+            margin-bottom: 20px; /* Отступ снизу */
+            text-align: center; /* Выравнивание по центру */
+            padding-bottom: 10px; /* Внутренний отступ снизу */
+            border-bottom: 1px solid #eaeaea; /* Линия под заголовком */
+        }
+        
+        /* Стили для первого контейнера (картинка и текст) */
+        .image-text-container .content {
+            display: flex; /* Используем flexbox для расположения элементов */
+            flex-direction: column; /* Располагаем элементы в колонку */
+            align-items: center; /* Центрируем элементы по горизонтали */
+        }
+        
+        /* Стили для изображения в первом контейнере */
+        .image-text-container img {
+            width: 200px; /* Ширина изображения */
+            height: 150px; /* Высота изображения */
+            object-fit: cover; /* Сохраняем пропорции изображения, обрезая лишнее */
+            border-radius: 6px; /* Скругляем углы изображения */
+            margin-bottom: 20px; /* Отступ снизу */
+            border: 2px solid #eaeaea; /* Рамка вокруг изображения */
+        }
+        
+        /* Стили для текста в первом контейнере */
+        .image-text-container p {
+            text-align: justify; /* Выравниваем текст по ширине */
+            color: #555; /* Цвет текста */
+            line-height: 1.5; /* Межстрочный интервал */
+        }
+        
+        /* Стили для второго контейнера (ненумерованный список) */
+        .unordered-list-container ul {
+            list-style-type: none; /* Убираем стандартные маркеры списка */
+            padding-left: 0; /* Убираем стандартный отступ слева */
+        }
+        
+        /* Стили для элементов ненумерованного списка */
+        .unordered-list-container li {
+            padding: 12px 15px; /* Внутренние отступы элемента списка */
+            margin-bottom: 8px; /* Отступ снизу между элементами */
+            background-color: #f8f9fa; /* Светлый фон элемента списка */
+            border-left: 4px solid #4a6fa5; /* Синяя полоса слева */
+            border-radius: 4px; /* Скругляем углы элементов списка */
+            transition: background-color 0.2s ease; /* Плавное изменение цвета фона */
+        }
+        
+        /* Эффект при наведении на элемент ненумерованного списка */
+        .unordered-list-container li:hover {
+            background-color: #e9f2ff; /* Меняем цвет фона при наведении */
+        }
+        
+        /* Стили для третьего контейнера (нумерованный список) */
+        .ordered-list-container ol {
+            padding-left: 20px; /* Отступ слева для списка */
+        }
+        
+        /* Стили для элементов нумерованного списка */
+        .ordered-list-container li {
+            padding: 12px 15px; /* Внутренние отступы элемента списка */
+            margin-bottom: 10px; /* Отступ снизу между элементами */
+            background-color: #f8f9fa; /* Светлый фон элемента списка */
+            border-radius: 4px; /* Скругляем углы элементов списка */
+            counter-increment: list-counter; /* Счетчик для нумерации */
+            position: relative; /* Позиционирование для кастомной нумерации */
+            padding-left: 50px; /* Отступ слева для кастомного номера */
+        }
+        
+        /* Кастомная нумерация для элементов списка */
+        .ordered-list-container li:before {
+            content: counter(list-counter); /* Отображаем номер элемента */
+            position: absolute; /* Абсолютное позиционирование */
+            left: 15px; /* Позиционируем слева */
+            top: 50%; /* Позиционируем по вертикали по центру */
+            transform: translateY(-50%); /* Центрируем по вертикали */
+            background-color: #4a6fa5; /* Фон номера */
+            color: white; /* Цвет номера */
+            width: 25px; /* Ширина блока с номером */
+            height: 25px; /* Высота блока с номером */
+            border-radius: 50%; /* Делаем блок круглым */
+            display: flex; /* Используем flexbox для центрирования */
+            align-items: center; /* Центрируем по вертикали */
+            justify-content: center; /* Центрируем по горизонтали */
+            font-weight: bold; /* Жирный шрифт для номера */
+        }
+        
+        /* Стили для футера страницы */
+        .footer {
+            text-align: center; /* Выравнивание по центру */
+            margin-top: 40px; /* Отступ сверху */
+            padding-top: 20px; /* Внутренний отступ сверху */
+            border-top: 2px solid #eaeaea; /* Линия над футером */
+            color: #666; /* Цвет текста футера */
+            font-size: 0.9rem; /* Размер шрифта футера */
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .container-wrapper {
+                flex-direction: column; /* Располагаем контейнеры в колонку на мобильных */
+                align-items: center; /* Центрируем контейнеры */
+            }
+            
+            .example-container {
+                width: 100%; /* Контейнеры занимают всю ширину на мобильных */
+                max-width: 400px; /* Но не больше 400px */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Основы HTML и CSS</h1>
+        <p>Пример трех типов контейнеров с разным содержимым</p>
+    </header>
+    
+    <div class="container-wrapper">
+        <!-- Первый контейнер: картинка и текст -->
+        <div class="example-container image-text-container">
+            <h2 class="container-title">Контейнер с изображением и текстом</h2>
+            <div class="content">
+                <!-- Пример изображения -->
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Пример HTML и CSS кода">
+                <!-- Пример текста -->
+                <p>HTML (HyperText Markup Language) — это язык разметки, который используется для создания структуры веб-страницы. CSS (Cascading Style Sheets) — это язык стилей, который определяет внешний вид элементов HTML. Вместе они позволяют создавать красивые и функциональные веб-страницы.</p>
+            </div>
+        </div>
+        
+        <!-- Второй контейнер: ненумерованный список -->
+        <div class="example-container unordered-list-container">
+            <h2 class="container-title">Ненумерованный список</h2>
+            <!-- Ненумерованный список (маркированный) -->
+            <ul>
+                <li>HTML - язык разметки гипертекста</li>
+                <li>CSS - каскадные таблицы стилей</li>
+                <li>JavaScript - язык программирования для веб-страниц</li>
+                <li>Flexbox - модель размещения элементов</li>
+                <li>Grid - система двумерного макета</li>
+            </ul>
+        </div>
+        
+        <!-- Третий контейнер: нумерованный список -->
+        <div class="example-container ordered-list-container">
+            <h2 class="container-title">Нумерованный список</h2>
+            <!-- Нумерованный список -->
+            <ol>
+                <li>Изучите основы HTML тегов и атрибутов</li>
+                <li>Освойте CSS свойства и селекторы</li>
+                <li>Научитесь позиционировать элементы на странице</li>
+                <li>Познакомьтесь с Flexbox для создания гибких макетов</li>
+                <li>Изучите CSS Grid для сложных сеточных макетов</li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>Урок по основам HTML и CSS &copy; 2023</p>
+        <p>Все контейнеры стилизованы с помощью CSS</p>
+    </footer>
+</body>
+</html>
