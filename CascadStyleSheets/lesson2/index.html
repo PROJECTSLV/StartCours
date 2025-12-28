@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основы HTML и CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Добавлен шрифт из Google Fonts для современного вида -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Добавлены иконки Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- НАЧАЛО: Добавленное навигационное меню -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i> WebDev Basics
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Уроки</a></li>
+                <li><a href="#"><i class="fas fa-examples"></i> Примеры</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Помощь</a></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Меню">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    <!-- КОНЕЦ: Добавленное навигационное меню -->
+    
+    <header class="header">
+        <h1>HTML и CSS: Примеры контейнеров</h1>
+        <p>Три типа контейнеров с разным содержимым</p>
+        <!-- НАЧАЛО: Добавленное приветствие -->
+        <div class="welcome-banner">
+            <p>Добро пожаловать на второй урок! Сегодня мы научимся создавать современные элементы веб-страниц.</p>
+            <button class="cta-button">Начать обучение</button>
+        </div>
+        <!-- КОНЕЦ: Добавленное приветствие -->
+    </header>
+    
+    <!-- НАЧАЛО: Новая секция с услугами/преимуществами -->
+    <section class="services">
+        <h2 class="section-title">Что вы узнаете на курсе</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Основы HTML</h3>
+                <p>Изучите структуру веб-страниц, основные теги и семантическую разметку.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Стилизация CSS</h3>
+                <p>Научитесь оформлять веб-страницы с помощью каскадных таблиц стилей.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Адаптивный дизайн</h3>
+                <p>Создавайте сайты, которые отлично выглядят на всех устройствах.</p>
+            </div>
+        </div>
+    </section>
+    <!-- КОНЕЦ: Новая секция с услугами/преимуществами -->
+    
+    <div class="containers">
+        <!-- Контейнер 1: Картинка и текст -->
+        <div class="container">
+            <div class="container-header">
+                <h2>Изображение и текст</h2>
+                <span class="container-badge">Популярное</span>
+            </div>
+            <img src="https://placehold.co/300x150/4a6fa5/ffffff?text=HTML+CSS" alt="Пример изображения">
+            <p>HTML создает структуру страницы, CSS добавляет стили и оформление.</p>
+            <!-- НАЧАЛО: Добавленные кнопки действий -->
+            <div class="container-actions">
+                <button class="action-btn like-btn">
+                    <i class="far fa-thumbs-up"></i> Нравится
+                </button>
+                <button class="action-btn share-btn">
+                    <i class="fas fa-share"></i> Поделиться
+                </button>
+            </div>
+            <!-- КОНЕЦ: Добавленные кнопки действий -->
+        </div>
+        
+        <!-- Контейнер 2: Ненумерованный список -->
+        <div class="container">
+            <h2>Ненумерованный список</h2>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Элемент списка 1</li>
+                <li><i class="fas fa-check-circle"></i> Элемент списка 2</li>
+                <li><i class="fas fa-check-circle"></i> Элемент списка 3</li>
+                <li><i class="fas fa-check-circle"></i> Элемент списка 4</li>
+            </ul>
+        </div>
+        
+        <!-- Контейнер 3: Нумерованный список -->
+        <div class="container">
+            <h2>Нумерованный список</h2>
+            <ol>
+                <li>Первый пункт</li>
+                <li>Второй пункт</li>
+                <li>Третий пункт</li>
+                <li>Четвертый пункт</li>
+            </ol>
+        </div>
+    </div>
+    
+    <!-- НАЧАЛО: Новая секция с формой подписки -->
+    <section class="subscribe-section">
+        <div class="subscribe-container">
+            <h2>Подпишитесь на обновления</h2>
+            <p>Получайте новые уроки и примеры кода прямо на почту</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Ваш email" required>
+                <button type="submit">Подписаться</button>
+            </form>
+            <p class="form-note">Мы не спамим и не передаем ваши данные третьим лицам</p>
+        </div>
+    </section>
+    <!-- КОНЕЦ: Новая секция с формой подписки -->
+    
+    <!-- НАЧАЛО: Улучшенный футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>WebDev Basics</h3>
+                <p>Практический курс по основам веб-разработки для начинающих.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Быстрые ссылки</h3>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Уроки</a></li>
+                    <li><a href="#">Примеры</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-envelope"></i> info@webdevbasics.ru</p>
+                <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Урок по основам HTML и CSS &copy; 2023</p>
+        </div>
+    </footer>
+    <!-- КОНЕЦ: Улучшенный футер -->
+    
+    <!-- НАЧАЛО: Добавленный скрипт для интерактивности -->
+    <script>
+        // Простой скрипт для кнопки меню и взаимодействия
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Анимация при клике на кнопку "Нравится"
+            const likeButtons = document.querySelectorAll('.like-btn');
+            likeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('liked');
+                    const icon = this.querySelector('i');
+                    if (this.classList.contains('liked')) {
+                        icon.className = 'fas fa-thumbs-up';
+                        this.innerHTML = '<i class="fas fa-thumbs-up"></i> Понравилось';
+                    } else {
+                        icon.className = 'far fa-thumbs-up';
+                        this.innerHTML = '<i class="far fa-thumbs-up"></i> Нравится';
+                    }
+                });
+            });
+            
+            // Обработка формы подписки
+            const subscribeForm = document.querySelector('.subscribe-form');
+            if (subscribeForm) {
+                subscribeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert(`Спасибо за подписку! На адрес ${email} будет отправлено письмо с подтверждением.`);
+                    this.reset();
+                });
+            }
+        });
+    </script>
+    <!-- КОНЕЦ: Добавленный скрипт -->
+</body>
+</html>
