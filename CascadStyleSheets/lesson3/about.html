@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev School - О проекте</title>
+    <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключаем наши стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Навигация (такая же как на главной) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> WebDev School
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a></li>
+                <li><a href="about.html" class="nav-link active">
+                    <i class="fas fa-info-circle"></i> О проекте
+                </a></li>
+                <li><a href="gallery.html" class="nav-link">
+                    <i class="fas fa-images"></i> Галерея
+                </a></li>
+            </ul>
+            
+            <!-- Переключатель темы -->
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fas fa-moon"></i> Тёмная тема
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        <div class="container">
+            <h1>О проекте WebDev School</h1>
+            
+            <div class="about-content">
+                <div class="about-section">
+                    <h2><i class="fas fa-rocket"></i> Наша миссия</h2>
+                    <p>Мы создаем простые и понятные уроки по веб-разработке для начинающих. Наша цель — сделать обучение доступным для каждого.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h2><i class="fas fa-users"></i> Для кого этот курс</h2>
+                    <p>Наши уроки подходят для всех, кто хочет научиться создавать современные веб-сайты. Не требуется никаких предварительных знаний.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h2><i class="fas fa-graduation-cap"></i> Что вы получите</h2>
+                    <p>После прохождения курса вы сможете создавать свои собственные веб-сайты, понимать чужой код и продолжать обучение самостоятельно.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h2><i class="fas fa-code"></i> Технологии</h2>
+                    <p>Мы учим современным технологиям: HTML5, CSS3, JavaScript, адаптивному дизайну и основам UX/UI.</p>
+                </div>
+            </div>
+            
+            <!-- Прогресс изучения -->
+            <div class="progress-section">
+                <h2>Программа обучения</h2>
+                <div class="progress-steps">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <h3>Основы HTML</h3>
+                        <p>Структура страницы, теги, формы</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Стилизация CSS</h3>
+                        <p>Селекторы, позиционирование, Flexbox</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>JavaScript</h3>
+                        <p>Основы, DOM, события</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Проекты</h3>
+                        <p>Создание реальных веб-сайтов</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2023 WebDev School. Все права защищены.</p>
+            <p>Урок по основам HTML, CSS и JavaScript</p>
+        </div>
+    </footer>
+    
+    <!-- Подключаем наш JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

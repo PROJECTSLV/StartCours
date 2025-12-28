@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDev School - Галерея</title>
+    <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключаем наши стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Навигация (такая же как на главной) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> WebDev School
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a></li>
+                <li><a href="about.html" class="nav-link">
+                    <i class="fas fa-info-circle"></i> О проекте
+                </a></li>
+                <li><a href="gallery.html" class="nav-link active">
+                    <i class="fas fa-images"></i> Галерея
+                </a></li>
+            </ul>
+            
+            <!-- Переключатель темы -->
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fas fa-moon"></i> Тёмная тема
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        <div class="container">
+            <h1>Галерея проектов</h1>
+            
+            <div class="gallery-intro">
+                <p>Посмотрите примеры проектов, которые вы научитесь создавать на наших уроках.</p>
+            </div>
+            
+            <!-- Галерея изображений -->
+            <div class="gallery">
+                <!-- Проект 1 -->
+                <div class="project-card">
+                    <img src="https://placehold.co/400x250/4a6fa5/ffffff?text=Лендинг" alt="Лендинг страница">
+                    <div class="project-info">
+                        <h3>Лендинг страница</h3>
+                        <p>Одностраничный сайт для продукта или услуги. Идеально для первого проекта.</p>
+                        <div class="tech-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 2 -->
+                <div class="project-card">
+                    <img src="https://placehold.co/400x250/2c3e50/ffffff?text=Блог" alt="Блог">
+                    <div class="project-info">
+                        <h3>Персональный блог</h3>
+                        <p>Сайт для публикации статей с навигацией и комментариями.</p>
+                        <div class="tech-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 3 -->
+                <div class="project-card">
+                    <img src="https://placehold.co/400x250/ff6b6b/ffffff?text=Портфолио" alt="Портфолио">
+                    <div class="project-info">
+                        <h3>Сайт-портфолио</h3>
+                        <p>Покажите свои работы в стильном портфолио с фильтрацией проектов.</p>
+                        <div class="tech-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 4 -->
+                <div class="project-card">
+                    <img src="https://placehold.co/400x250/4ecdc4/ffffff?text=Интернет-магазин" alt="Интернет-магазин">
+                    <div class="project-info">
+                        <h3>Интернет-магазин</h3>
+                        <p>Полноценный магазин с корзиной товаров и формой заказа.</p>
+                        <div class="tech-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JS</span>
+                            <span class="tag">API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Инструкция по использованию -->
+            <div class="instructions">
+                <h2>Как работать с галереей</h2>
+                <ol>
+                    <li>Выберите понравившийся проект</li>
+                    <li>Изучите использованные технологии</li>
+                    <li>Скачайте исходный код для изучения</li>
+                    <li>Попробуйте создать свой вариант!</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2023 WebDev School. Все права защищены.</p>
+            <p>Урок по основам HTML, CSS и JavaScript</p>
+        </div>
+    </footer>
+    
+    <!-- Подключаем наш JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
