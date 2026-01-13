@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Климат</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-house-door"></i> Умный Дом
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="../dashboard.html">Панель</a>
+                <a class="nav-link active" href="climate.html">Климат</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item"><a href="../dashboard.html">Устройства</a></li>
+                <li class="breadcrumb-item active">Климат</li>
+            </ol>
+        </nav>
+        
+        <h1 class="h2 mb-4">Управление климатом</h1>
+        
+        <!-- Общая информация -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card border-primary">
+                    <div class="card-body text-center">
+                        <i class="bi bi-thermometer-half text-primary" style="font-size: 3rem;"></i>
+                        <h2 class="display-6 mt-2">22°C</h2>
+                        <p class="text-muted">Средняя температура</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-success">
+                    <div class="card-body text-center">
+                        <i class="bi bi-droplet text-success" style="font-size: 3rem;"></i>
+                        <h2 class="display-6 mt-2">45%</h2>
+                        <p class="text-muted">Средняя влажность</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-info">
+                    <div class="card-body text-center">
+                        <i class="bi bi-wind text-info" style="font-size: 3rem;"></i>
+                        <h2 class="display-6 mt-2">2.1 кВт</h2>
+                        <p class="text-muted">Потребление систем</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- По комнатам -->
+        <div class="row">
+            <!-- Гостиная -->
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-tv"></i> Гостиная
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center mb-4">
+                                    <i class="bi bi-thermometer-half text-warning" style="font-size: 4rem;"></i>
+                                    <h3 class="display-4">22°C</h3>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-warning">-</button>
+                                        <button class="btn btn-outline-warning">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Кондиционер</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Включен</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Режим</label>
+                                    <select class="form-select">
+                                        <option>Охлаждение</option>
+                                        <option>Обогрев</option>
+                                        <option>Вентиляция</option>
+                                        <option>Авто</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Вентиляция</label>
+                                    <input type="range" class="form-range" value="3" min="1" max="5">
+                                    <div class="d-flex justify-content-between">
+                                        <small>Мин</small>
+                                        <small>3/5</small>
+                                        <small>Макс</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Спальня -->
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-bed"></i> Спальня
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center mb-4">
+                                    <i class="bi bi-thermometer-half text-primary" style="font-size: 4rem;"></i>
+                                    <h3 class="display-4">20°C</h3>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-primary">-</button>
+                                        <button class="btn btn-outline-primary">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Обогреватель</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox">
+                                        <label class="form-check-label">Включен</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Таймер</label>
+                                    <select class="form-select">
+                                        <option>Выключено</option>
+                                        <option>Через 1 час</option>
+                                        <option>Через 2 часа</option>
+                                        <option>Утром в 7:00</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Влажность</label>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 40%">40%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кухня -->
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-egg-fried"></i> Кухня
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center mb-4">
+                                    <i class="bi bi-thermometer-half text-success" style="font-size: 4rem;"></i>
+                                    <h3 class="display-4">24°C</h3>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-success">-</button>
+                                        <button class="btn btn-outline-success">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Вытяжка</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Включена</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Мощность</label>
+                                    <input type="range" class="form-range" value="2" min="1" max="3">
+                                    <div class="d-flex justify-content-between">
+                                        <small>Мин</small>
+                                        <small>2/3</small>
+                                        <small>Макс</small>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Таймер</label>
+                                    <input type="number" class="form-control" value="15" min="5" max="60">
+                                    <small class="text-muted">минут</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ванная -->
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-info text-dark">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-droplet"></i> Ванная
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-center mb-4">
+                                    <i class="bi bi-thermometer-half text-info" style="font-size: 4rem;"></i>
+                                    <h3 class="display-4">26°C</h3>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-outline-info">-</button>
+                                        <button class="btn btn-outline-info">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Полотенцесушитель</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" checked>
+                                        <label class="form-check-label">Включен</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Температура пола</label>
+                                    <input type="range" class="form-range" value="28" min="20" max="35">
+                                    <div class="d-flex justify-content-between">
+                                        <small>20°C</small>
+                                        <small>28°C</small>
+                                        <small>35°C</small>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Вентиляция</label>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox">
+                                        <label class="form-check-label">Авто при влажности >60%</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Графики -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Температура за 24 часа</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-end" style="height: 150px;">
+                            <!-- Имитация графика -->
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 30%;"></div>
+                                <small class="d-block text-center mt-1">00</small>
+                            </div>
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 25%;"></div>
+                                <small class="d-block text-center mt-1">04</small>
+                            </div>
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 20%;"></div>
+                                <small class="d-block text-center mt-1">08</small>
+                            </div>
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 40%;"></div>
+                                <small class="d-block text-center mt-1">12</small>
+                            </div>
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 60%;"></div>
+                                <small class="d-block text-center mt-1">16</small>
+                            </div>
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 55%;"></div>
+                                <small class="d-block text-center mt-1">20</small>
+                            </div>
+                            <div class="flex-fill mx-1">
+                                <div class="bg-primary rounded-top" style="height: 45%;"></div>
+                                <small class="d-block text-center mt-1">00</small>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <small class="text-muted">Минимум</small>
+                                    <h4>18°C</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <small class="text-muted">Средняя</small>
+                                    <h4>22°C</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <small class="text-muted">Максимум</small>
+                                    <h4>26°C</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Расписание -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Расписание климата</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Время</th>
+                                        <th>Гостиная</th>
+                                        <th>Спальня</th>
+                                        <th>Кухня</th>
+                                        <th>Ванная</th>
+                                        <th>Действие</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>07:00</td>
+                                        <td>22°C</td>
+                                        <td>20°C</td>
+                                        <td>21°C</td>
+                                        <td>24°C</td>
+                                        <td><span class="badge bg-success">Активно</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>09:00</td>
+                                        <td>21°C</td>
+                                        <td>18°C</td>
+                                        <td>22°C</td>
+                                        <td>22°C</td>
+                                        <td><span class="badge bg-success">Активно</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>18:00</td>
+                                        <td>23°C</td>
+                                        <td>20°C</td>
+                                        <td>24°C</td>
+                                        <td>26°C</td>
+                                        <td><span class="badge bg-warning">Ожидание</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>23:00</td>
+                                        <td>20°C</td>
+                                        <td>18°C</td>
+                                        <td>19°C</td>
+                                        <td>22°C</td>
+                                        <td><span class="badge bg-secondary">Выключено</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary mt-3">
+                            <i class="bi bi-plus-circle"></i> Добавить расписание
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">Управление климатом • Умный Дом</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

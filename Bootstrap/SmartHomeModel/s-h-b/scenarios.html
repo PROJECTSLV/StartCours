@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный дом - Сценарии</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body { 
+            padding-top: 20px; 
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+        }
+        
+        .scenario-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .scenario-card {
+            border-left: 4px solid;
+            transition: all 0.3s;
+        }
+        
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded-3 mx-3 mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand text-primary fw-bold" href="index.html">
+                <span class="fs-4">🏠</span> Умный Дом
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="index.html">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="devices.html">
+                            Устройства
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium" href="scenarios.html">
+                            Сценарии
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <span class="text-muted me-3 d-none d-md-block">
+                        Активно: <span id="activeScenarios">2</span>
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="toggleTheme()">
+                        🌓 Тема
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-6 fw-bold mb-3">Сценарии автоматизации</h1>
+                <p class="text-muted">Автоматические режимы работы умного дома</p>
+            </div>
+        </div>
+
+        <!-- Создание нового сценария -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0 fw-bold">Создать новый сценарий</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="newScenarioForm" onsubmit="return createNewScenario(event)">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">Название сценария</label>
+                                    <input type="text" class="form-control" id="scenarioName" 
+                                           placeholder="Например: 'Утренний кофе'" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label fw-bold">Триггер срабатывания</label>
+                                    <select class="form-select" id="scenarioTrigger">
+                                        <option value="time">По времени</option>
+                                        <option value="manual">Вручную</option>
+                                        <option value="device">По событию устройства</option>
+                                        <option value="location">По геолокации</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Действия сценария</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="actionLight">
+                                    <label class="form-check-label" for="actionLight">
+                                        Включить/выключить свет
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="actionClimate">
+                                    <label class="form-check-label" for="actionClimate">
+                                        Настроить температуру
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="actionMusic">
+                                    <label class="form-check-label" for="actionMusic">
+                                        Включить музыку
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="fw-bold">+</span> Создать сценарий
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Список сценариев -->
+        <div class="row" id="scenariosList">
+            <!-- Сценарии будут добавлены через JavaScript -->
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript для управления сценариями -->
+    <script>
+        // Данные сценариев
+        const scenarios = [
+            { 
+                id: 1, 
+                name: 'Доброе утро', 
+                description: 'Просыпаемся с комфортом', 
+                active: true, 
+                icon: '🌅',
+                color: 'border-warning',
+                actions: ['Включает свет', 'Греет кофе', 'Поднимает температуру']
+            },
+            { 
+                id: 2, 
+                name: 'Рабочий режим', 
+                description: 'Оптимальные настройки для работы', 
+                active: false, 
+                icon: '💼',
+                color: 'border-primary',
+                actions: ['Приглушает свет', 'Поддерживает 22°C', 'Включает тишину']
+            },
+            { 
+                id: 3, 
+                name: 'Вечерний кинотеатр', 
+                description: 'Создаем атмосферу для просмотра', 
+                active: true, 
+                icon: '🎬',
+                color: 'border-info',
+                actions: ['Приглушает свет', 'Включает ТВ', 'Настраивает звук']
+            },
+            { 
+                id: 4, 
+                name: 'Ночной режим', 
+                description: 'Готовимся ко сну', 
+                active: false, 
+                icon: '🌙',
+                color: 'border-secondary',
+                actions: ['Выключает свет', 'Понижает температуру', 'Включает охрану']
+            },
+            { 
+                id: 5, 
+                name: 'Экономный', 
+                description: 'Минимизация энергопотребления', 
+                active: false, 
+                icon: '💰',
+                color: 'border-success',
+                actions: ['Выключает неиспользуемые устройства', 'Понижает температуру', 'Контролирует освещение']
+            },
+            { 
+                id: 6, 
+                name: 'Прием гостей', 
+                description: 'Создаем праздничную атмосферу', 
+                active: false, 
+                icon: '🎉',
+                color: 'border-danger',
+                actions: ['Яркий свет', 'Фоновая музыка', 'Комфортная температура']
+            }
+        ];
+
+        // Инициализация списка сценариев
+        function initializeScenarios() {
+            const container = document.getElementById('scenariosList');
+            container.innerHTML = '';
+            
+            scenarios.forEach(scenario => {
+                const scenarioElement = createScenarioElement(scenario);
+                container.appendChild(scenarioElement);
+            });
+            
+            // Обновляем счетчик активных сценариев
+            updateActiveCount();
+        }
+
+        // Создание элемента сценария
+        function createScenarioElement(scenario) {
+            const col = document.createElement('div');
+            col.className = 'col-md-6 col-lg-4 mb-4';
+            col.id = `scenario-${scenario.id}`;
+            
+            const activeStatus = scenario.active ? 'Активен' : 'Не активен';
+            const activeClass = scenario.active ? 'success' : 'secondary';
+            const buttonText = scenario.active ? 'Деактивировать' : 'Активировать';
+            const buttonClass = scenario.active ? 'outline-danger' : 'success';
+            
+            col.innerHTML = `
+                <div class="card h-100 shadow-sm scenario-card ${scenario.color}">
+                    <div class="card-body">
+                        <div class="scenario-icon">
+                            ${scenario.icon}
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold">${scenario.name}</h5>
+                            <span class="badge bg-${activeClass}">${activeStatus}</span>
+                        </div>
+                        
+                        <p class="card-text text-muted mb-3">${scenario.description}</p>
+                        
+                        <div class="mb-3">
+                            <small class="fw-bold text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                ${scenario.actions.map(action => `<li>${action}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-${buttonClass}" onclick="toggleScenario(${scenario.id})">
+                                ${buttonText}
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="runScenario(${scenario.id})">
+                                Запустить сейчас
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return col;
+        }
+
+        // Переключение активности сценария
+        function toggleScenario(scenarioId) {
+            const scenario = scenarios.find(s => s.id === scenarioId);
+            if (!scenario) return;
+            
+            scenario.active = !scenario.active;
+            
+            // Обновляем интерфейс
+            const scenarioElement = document.getElementById(`scenario-${scenarioId}`);
+            const badge = scenarioElement.querySelector('.badge');
+            const button = scenarioElement.querySelector('.btn');
+            
+            if (scenario.active) {
+                badge.textContent = 'Активен';
+                badge.className = 'badge bg-success';
+                button.textContent = 'Деактивировать';
+                button.className = 'btn btn-outline-danger';
+                showAlert(`Сценарий "${scenario.name}" активирован`, 'success');
+            } else {
+                badge.textContent = 'Не активен';
+                badge.className = 'badge bg-secondary';
+                button.textContent = 'Активировать';
+                button.className = 'btn btn-success';
+                showAlert(`Сценарий "${scenario.name}" деактивирован`, 'warning');
+            }
+            
+            updateActiveCount();
+        }
+
+        // Запуск сценария
+        function runScenario(scenarioId) {
+            const scenario = scenarios.find(s => s.id === scenarioId);
+            if (scenario) {
+                showAlert(`Запускается сценарий: "${scenario.name}"`, 'info');
+                
+                // Имитация запуска
+                const button = event.target;
+                const originalText = button.textContent;
+                
+                button.textContent = '⏳ Запускается...';
+                button.disabled = true;
+                button.className = 'btn btn-secondary';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.className = 'btn btn-outline-primary';
+                    showAlert(`Сценарий "${scenario.name}" успешно выполнен!`, 'success');
+                }, 2000);
+            }
+        }
+
+        // Создание нового сценария
+        function createNewScenario(event) {
+            event.preventDefault();
+            
+            const nameInput = document.getElementById('scenarioName');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                showAlert('Введите название сценария', 'danger');
+                return false;
+            }
+            
+            // Создаем новый сценарий
+            const newScenario = {
+                id: scenarios.length + 1,
+                name: name,
+                description: 'Новый пользовательский сценарий',
+                active: false,
+                icon: '✨',
+                color: 'border-primary',
+                actions: ['Новое действие']
+            };
+            
+            scenarios.push(newScenario);
+            
+            // Добавляем в интерфейс
+            const container = document.getElementById('scenariosList');
+            const scenarioElement = createScenarioElement(newScenario);
+            container.appendChild(scenarioElement);
+            
+            // Очищаем форму
+            nameInput.value = '';
+            document.getElementById('scenarioTrigger').value = 'time';
+            document.getElementById('actionLight').checked = false;
+            document.getElementById('actionClimate').checked = false;
+            document.getElementById('actionMusic').checked = false;
+            
+            showAlert(`Сценарий "${name}" создан!`, 'success');
+            updateActiveCount();
+            
+            return false;
+        }
+
+        // Обновление счетчика активных сценариев
+        function updateActiveCount() {
+            const activeCount = scenarios.filter(s => s.active).length;
+            document.getElementById('activeScenarios').textContent = activeCount;
+        }
+
+        // Переключение темы
+        function toggleTheme() {
+            document.body.classList.toggle('bg-dark');
+            document.body.classList.toggle('text-light');
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.toggle('bg-secondary');
+                card.classList.toggle('text-light');
+            });
+        }
+
+        // Простое уведомление
+        function showAlert(message, type = 'success') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 1050; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.remove();
+                }
+            }, 3000);
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', initializeScenarios);
+    </script>
+</body>
+</html>

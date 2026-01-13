@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Панель управления</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Наши дополнительные стили -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+    
+    <style>
+        /* Базовые стили для проекта */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --success-color: #4cc9f0;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            padding-top: 20px;
+            background-color: #f5f7fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .device-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .device-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация будет здесь -->
+    <!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded-3 mx-3 mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-home me-2"></i>Умный Дом
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">
+                        <i class="fas fa-tachometer-alt me-1"></i>Панель управления
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="devices.html">
+                        <i class="fas fa-plug me-1"></i>Устройства
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="scenarios.html">
+                        <i class="fas fa-play-circle me-1"></i>Сценарии
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="d-flex align-items-center">
+                <span class="me-3 text-muted d-none d-md-block">
+                    <i class="fas fa-user-circle me-1"></i>Привет, Алексей!
+                </span>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                    <label class="form-check-label" for="darkModeSwitch">Темная тема</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <!-- Основной контент будет здесь -->
+    <!-- Основной контент -->
+<main class="container-fluid">
+    <div class="row">
+        <!-- Левая колонка - Основные показатели -->
+        <div class="col-lg-8">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="mb-4">
+                        <i class="fas fa-tachometer-alt me-2 text-primary"></i>Панель управления
+                    </h2>
+                </div>
+                
+                <!-- Карточки с показателями -->
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card device-card border-primary">
+                        <div class="card-body text-center">
+                            <i class="fas fa-thermometer-half fa-2x text-primary mb-2"></i>
+                            <h5 class="card-title">Температура</h5>
+                            <h2 class="card-text" id="temperature">22.5°C</h2>
+                            <div class="btn-group btn-group-sm mt-2">
+                                <button class="btn btn-outline-primary" onclick="adjustTemperature(-0.5)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button class="btn btn-outline-primary" onclick="adjustTemperature(0.5)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card device-card border-success">
+                        <div class="card-body text-center">
+                            <i class="fas fa-tint fa-2x text-success mb-2"></i>
+                            <h5 class="card-title">Влажность</h5>
+                            <h2 class="card-text" id="humidity">45%</h2>
+                            <span class="badge bg-success">Норма</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card device-card border-warning">
+                        <div class="card-body text-center">
+                            <i class="fas fa-lightbulb fa-2x text-warning mb-2"></i>
+                            <h5 class="card-title">Энергия</h5>
+                            <h2 class="card-text" id="energy">1.2 кВт</h2>
+                            <div class="progress mt-2" style="height: 8px;">
+                                <div class="progress-bar bg-warning" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="card device-card border-info">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-2x text-info mb-2"></i>
+                            <h5 class="card-title">Безопасность</h5>
+                            <h2 class="card-text">Включено</h2>
+                            <button class="btn btn-sm btn-info mt-2" id="securityToggle">
+                                <i class="fas fa-power-off me-1"></i>Выключить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- График/состояние устройств -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-line me-2"></i>Активность устройств
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Упрощенный "график" -->
+                            <div class="row text-center">
+                                <div class="col">
+                                    <div class="p-3 bg-light rounded">
+                                        <i class="fas fa-sun fa-lg text-warning mb-2"></i>
+                                        <p class="mb-1">Освещение</p>
+                                        <span class="badge bg-success">Вкл</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 bg-light rounded">
+                                        <i class="fas fa-temperature-low fa-lg text-primary mb-2"></i>
+                                        <p class="mb-1">Кондиционер</p>
+                                        <span class="badge bg-danger">Выкл</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 bg-light rounded">
+                                        <i class="fas fa-tv fa-lg text-info mb-2"></i>
+                                        <p class="mb-1">Телевизор</p>
+                                        <span class="badge bg-success">Вкл</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="p-3 bg-light rounded">
+                                        <i class="fas fa-blender fa-lg text-secondary mb-2"></i>
+                                        <p class="mb-1">Кофеварка</p>
+                                        <span class="badge bg-danger">Выкл</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Правая колонка - Быстрые действия и уведомления -->
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <!-- Быстрые действия -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>Быстрые действия
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary" onclick="toggleAllLights()">
+                            <i class="fas fa-lightbulb me-2"></i>Все светильники
+                        </button>
+                        <button class="btn btn-outline-success" onclick="activateScenario('home')">
+                            <i class="fas fa-play me-2"></i>Сценарий "Дома"
+                        </button>
+                        <button class="btn btn-outline-warning" onclick="activateScenario('away')">
+                            <i class="fas fa-running me-2"></i>Сценарий "Ушел"
+                        </button>
+                        <button class="btn btn-outline-info" onclick="activateScenario('night')">
+                            <i class="fas fa-moon me-2"></i>Сценарий "Ночь"
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Уведомления -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bell me-2"></i>Уведомления
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                <small>Дверь закрыта</small>
+                            </div>
+                            <small class="text-muted">2 мин назад</small>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-info-circle text-primary me-2"></i>
+                                <small>Температура повышена</small>
+                            </div>
+                            <small class="text-muted">10 мин назад</small>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                                <small>Кофеварка не выключена</small>
+                            </div>
+                            <small class="text-muted">1 час назад</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    
+    <!-- Bootstrap JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Наш JavaScript файл -->
+    <script src="script.js"></script>
+</body>
+</html>

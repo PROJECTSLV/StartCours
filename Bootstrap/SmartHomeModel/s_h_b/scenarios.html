@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Сценарии</title>
+    
+    <!-- ТОЛЬКО Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body { padding-top: 1rem; background-color: #f8f9fa; }
+        .scenario-card { transition: all 0.2s; }
+        .scenario-card:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Навигация -->
+        <nav class="navbar navbar-light bg-white rounded shadow-sm mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold text-primary" href="index.html">
+                    🏠 Умный Дом
+                </a>
+                <div class="d-flex">
+                    <a href="index.html" class="btn btn-sm btn-outline-primary me-2">Главная</a>
+                    <a href="devices.html" class="btn btn-sm btn-outline-primary me-2">Устройства</a>
+                    <a href="scenarios.html" class="btn btn-sm btn-primary">Сценарии</a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Заголовок -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1 class="h3 fw-bold">Сценарии автоматизации</h1>
+                <p class="text-muted">Автоматические режимы работы дома</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newScenarioModal">
+                    + Новый сценарий
+                </button>
+            </div>
+        </div>
+        
+        <!-- Список сценариев -->
+        <div class="row g-3">
+            <!-- Сценарий 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card scenario-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-3">🌅</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title fw-bold">Доброе утро</h5>
+                        <p class="card-text text-muted small">
+                            Плавное пробуждение: свет, музыка, кофе.
+                        </p>
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-success w-100" onclick="runScenario('Доброе утро')">
+                                Запустить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card scenario-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-3">🏠</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title fw-bold">Режим "Дома"</h5>
+                        <p class="card-text text-muted small">
+                            Комфортные настройки для пребывания дома.
+                        </p>
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-success w-100" onclick="runScenario('Режим "Дома"')">
+                                Запустить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card scenario-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-3">🚶</span>
+                            <span class="badge bg-secondary">Не активен</span>
+                        </div>
+                        <h5 class="card-title fw-bold">Режим "Ушел"</h5>
+                        <p class="card-text text-muted small">
+                            Экономия энергии когда никого нет дома.
+                        </p>
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-outline-secondary w-100" onclick="runScenario('Режим "Ушел"')">
+                                Запустить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card scenario-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-3">🌙</span>
+                            <span class="badge bg-secondary">Не активен</span>
+                        </div>
+                        <h5 class="card-title fw-bold">Ночной режим</h5>
+                        <p class="card-text text-muted small">
+                            Подготовка ко сну: свет, температура, безопасность.
+                        </p>
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-outline-secondary w-100" onclick="runScenario('Ночной режим')">
+                                Запустить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card scenario-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-3">🎬</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title fw-bold">Кинотеатр</h5>
+                        <p class="card-text text-muted small">
+                            Оптимальные настройки для просмотра фильмов.
+                        </p>
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-success w-100" onclick="runScenario('Кинотеатр')">
+                                Запустить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card scenario-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="fs-3">🌿</span>
+                            <span class="badge bg-secondary">Не активен</span>
+                        </div>
+                        <h5 class="card-title fw-bold">Эко-режим</h5>
+                        <p class="card-text text-muted small">
+                            Минимальное энергопотребление.
+                        </p>
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-outline-secondary w-100" onclick="runScenario('Эко-режим')">
+                                Запустить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Модальное окно нового сценария -->
+        <div class="modal fade" id="newScenarioModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Новый сценарий</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="scenarioForm">
+                            <div class="mb-3">
+                                <label class="form-label">Название сценария</label>
+                                <input type="text" class="form-control" placeholder="Например: 'Гости'">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Описание</label>
+                                <textarea class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Действия</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="action1">
+                                    <label class="form-check-label" for="action1">Включить свет</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="action2">
+                                    <label class="form-check-label" for="action2">Настроить температуру</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="action3">
+                                    <label class="form-check-label" for="action3">Включить музыку</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="button" class="btn btn-primary" onclick="saveScenario()">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-4 pt-3 border-top text-center text-muted small">
+            <p>Сценарии выполняются автоматически по расписанию или вручную</p>
+        </footer>
+        
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Запуск сценария
+        function runScenario(name) {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Запускается...';
+            btn.disabled = true;
+            btn.className = 'btn btn-sm btn-secondary w-100';
+            
+            // Имитация загрузки
+            setTimeout(() => {
+                btn.textContent = '✓ Выполнен';
+                btn.className = 'btn btn-sm btn-success w-100';
+                showMessage(`Сценарий "${name}" успешно выполнен`, 'success');
+                
+                // Возвращаем исходное состояние
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                    btn.className = originalText.includes('Запустить') 
+                        ? 'btn btn-sm btn-success w-100' 
+                        : 'btn btn-sm btn-outline-secondary w-100';
+                }, 2000);
+            }, 1500);
+        }
+        
+        // Сохранение нового сценария
+        function saveScenario() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('newScenarioModal'));
+            modal.hide();
+            showMessage('Новый сценарий создан', 'success');
+        }
+        
+        // Функция показа сообщения
+        function showMessage(text, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alert.style.cssText = 'top: 20px; right: 20px; z-index: 1000;';
+            alert.innerHTML = `
+                ${text}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alert);
+            
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

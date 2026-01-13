@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Освещение</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-house-door"></i> Умный Дом
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="../dashboard.html">Панель</a>
+                <a class="nav-link active" href="lights.html">Освещение</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Хлебные крошки -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item"><a href="../dashboard.html">Устройства</a></li>
+                <li class="breadcrumb-item active">Освещение</li>
+            </ol>
+        </nav>
+        
+        <h1 class="h2 mb-4">Управление освещением</h1>
+        
+        <!-- Общее управление -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Все освещение</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h2 class="display-6">8/12</h2>
+                                <p class="text-muted mb-0">Устройств включено</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" checked style="transform: scale(1.5);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Общая яркость</h5>
+                        <input type="range" class="form-range" value="75">
+                        <div class="d-flex justify-content-between">
+                            <small>0%</small>
+                            <small>75%</small>
+                            <small>100%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- По комнатам -->
+        <div class="row">
+            <!-- Гостиная -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-tv"></i> Гостиная
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Основной свет
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Торшер
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Подсветка ТВ
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Яркость</label>
+                            <input type="range" class="form-range" value="80">
+                        </div>
+                        <button class="btn btn-outline-warning w-100 mt-2">
+                            <i class="bi bi-clock"></i> Таймер
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Спальня -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-bed"></i> Спальня
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Основной свет
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Прикроватные
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Ночник
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Яркость</label>
+                            <input type="range" class="form-range" value="30">
+                        </div>
+                        <button class="btn btn-outline-primary w-100 mt-2">
+                            <i class="bi bi-clock"></i> Таймер
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кухня -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-egg-fried"></i> Кухня
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Основной свет
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Подсветка столешницы
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Вытяжка
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Яркость</label>
+                            <input type="range" class="form-range" value="100">
+                        </div>
+                        <button class="btn btn-outline-success w-100 mt-2">
+                            <i class="bi bi-clock"></i> Таймер
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Прихожая -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-door-open"></i> Прихожая
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Основной свет
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Зеркало
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Яркость</label>
+                            <input type="range" class="form-range" value="60">
+                        </div>
+                        <button class="btn btn-outline-secondary w-100 mt-2">
+                            Датчик движения
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ванная -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-info text-dark">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-droplet"></i> Ванная
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Основной свет
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Зеркало
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Яркость</label>
+                            <input type="range" class="form-range" value="70">
+                        </div>
+                        <button class="btn btn-outline-info w-100 mt-2">
+                            Автовыключение
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Улица -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-tree"></i> Улица
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Фасад
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Дорожка
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox">
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Гараж
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Яркость</label>
+                            <input type="range" class="form-range" value="40">
+                        </div>
+                        <button class="btn btn-outline-dark w-100 mt-2">
+                            <i class="bi bi-sun"></i> По закату
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Группы сценариев -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Группы освещения</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-moon" style="font-size: 2rem;"></i>
+                                        <h6 class="card-title mt-2">Вечерний свет</h6>
+                                        <div class="form-check form-switch d-inline-block">
+                                            <input class="form-check-input" type="checkbox" checked>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-sun" style="font-size: 2rem;"></i>
+                                        <h6 class="card-title mt-2">Утренний свет</h6>
+                                        <div class="form-check form-switch d-inline-block">
+                                            <input class="form-check-input" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-film" style="font-size: 2rem;"></i>
+                                        <h6 class="card-title mt-2">Кинотеатр</h6>
+                                        <div class="form-check form-switch d-inline-block">
+                                            <input class="form-check-input" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <i class="bi bi-people" style="font-size: 2rem;"></i>
+                                        <h6 class="card-title mt-2">Прием гостей</h6>
+                                        <div class="form-check form-switch d-inline-block">
+                                            <input class="form-check-input" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">Управление освещением • Умный Дом</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

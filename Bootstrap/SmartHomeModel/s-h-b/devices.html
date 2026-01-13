@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный дом - Устройства</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body { 
+            padding-top: 20px; 
+            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+        }
+        
+        .device-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        
+        .filter-btn.active {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded-3 mx-3 mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand text-primary fw-bold" href="index.html">
+                <span class="fs-4">🏠</span> Умный Дом
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="index.html">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-medium" href="devices.html">
+                            Устройства
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-medium" href="scenarios.html">
+                            Сценарии
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <span class="text-muted me-3 d-none d-md-block">
+                        Устройства: <span id="deviceCount">8</span>
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="toggleTheme()">
+                        🌓 Тема
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-6 fw-bold mb-3">Управление устройствами</h1>
+                <p class="text-muted">Все подключенные устройства умного дома</p>
+            </div>
+        </div>
+
+        <!-- Фильтры -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-3">Фильтр устройств:</h6>
+                        <div class="d-flex flex-wrap gap-2" id="filterButtons">
+                            <button class="btn btn-sm btn-primary filter-btn active" onclick="filterDevices('all')">
+                                Все
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterDevices('light')">
+                                💡 Освещение
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterDevices('climate')">
+                                🌡️ Климат
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterDevices('security')">
+                                🔒 Безопасность
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary filter-btn" onclick="filterDevices('appliance')">
+                                🍳 Устройства
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Список устройств -->
+        <div class="row" id="devicesList">
+            <!-- Устройства будут добавлены через JavaScript -->
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript для управления устройствами -->
+    <script>
+        // Данные устройств
+        const devices = [
+            { id: 1, name: 'Умная лампочка', type: 'light', status: true, icon: '💡', iconColor: 'bg-warning' },
+            { id: 2, name: 'Кондиционер', type: 'climate', status: false, icon: '❄️', iconColor: 'bg-info' },
+            { id: 3, name: 'Умная розетка', type: 'appliance', status: true, icon: '🔌', iconColor: 'bg-success' },
+            { id: 4, name: 'Камера безопасности', type: 'security', status: true, icon: '📹', iconColor: 'bg-danger' },
+            { id: 5, name: 'Обогреватель', type: 'climate', status: false, icon: '🔥', iconColor: 'bg-danger' },
+            { id: 6, name: 'Умный замок', type: 'security', status: true, icon: '🔐', iconColor: 'bg-dark' },
+            { id: 7, name: 'Кофеварка', type: 'appliance', status: false, icon: '☕', iconColor: 'bg-secondary' },
+            { id: 8, name: 'Увлажнитель', type: 'climate', status: true, icon: '💨', iconColor: 'bg-primary' }
+        ];
+
+        // Инициализация списка устройств
+        function initializeDevices() {
+            const container = document.getElementById('devicesList');
+            container.innerHTML = '';
+            
+            devices.forEach(device => {
+                const deviceElement = createDeviceElement(device);
+                container.appendChild(deviceElement);
+            });
+            
+            // Обновляем счетчик
+            document.getElementById('deviceCount').textContent = devices.length;
+        }
+
+        // Создание элемента устройства
+        function createDeviceElement(device) {
+            const col = document.createElement('div');
+            col.className = 'col-md-6 col-lg-4 mb-3 device-item';
+            col.setAttribute('data-type', device.type);
+            
+            const statusText = device.status ? 'Включено' : 'Выключено';
+            const statusClass = device.status ? 'success' : 'secondary';
+            const switchChecked = device.status ? 'checked' : '';
+            
+            col.innerHTML = `
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="device-icon ${device.iconColor} text-white me-3">
+                                ${device.icon}
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="card-title fw-bold mb-1">${device.name}</h5>
+                                <span class="badge bg-light text-dark">${getTypeName(device.type)}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-${statusClass} fs-6">${statusText}</span>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input device-switch" type="checkbox" 
+                                       ${switchChecked} 
+                                       data-id="${device.id}"
+                                       style="width: 3em; height: 1.5em;">
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-sm btn-outline-primary" onclick="showDeviceSettings(${device.id})">
+                                Настройки
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return col;
+        }
+
+        // Переключение устройства
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('device-switch')) {
+                const deviceId = parseInt(e.target.getAttribute('data-id'));
+                const device = devices.find(d => d.id === deviceId);
+                
+                if (device) {
+                    device.status = e.target.checked;
+                    updateDeviceStatus(deviceId, device.status);
+                    showAlert(`Устройство "${device.name}" ${device.status ? 'включено' : 'выключено'}`);
+                }
+            }
+        });
+
+        // Обновление статуса устройства в интерфейсе
+        function updateDeviceStatus(deviceId, status) {
+            const deviceElement = document.querySelector(`[data-id="${deviceId}"]`).closest('.device-item');
+            const badge = deviceElement.querySelector('.badge');
+            
+            if (status) {
+                badge.textContent = 'Включено';
+                badge.className = 'badge bg-success fs-6';
+            } else {
+                badge.textContent = 'Выключено';
+                badge.className = 'badge bg-secondary fs-6';
+            }
+        }
+
+        // Фильтрация устройств
+        function filterDevices(type) {
+            // Обновляем активную кнопку фильтра
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'btn-primary');
+                btn.classList.add('btn-outline-primary');
+            });
+            
+            event.target.classList.add('active', 'btn-primary');
+            event.target.classList.remove('btn-outline-primary');
+            
+            // Фильтруем устройства
+            const allDevices = document.querySelectorAll('.device-item');
+            
+            allDevices.forEach(device => {
+                if (type === 'all' || device.getAttribute('data-type') === type) {
+                    device.style.display = 'block';
+                } else {
+                    device.style.display = 'none';
+                }
+            });
+        }
+
+        // Показать настройки устройства
+        function showDeviceSettings(deviceId) {
+            const device = devices.find(d => d.id === deviceId);
+            if (device) {
+                showAlert(`Настройки устройства "${device.name}"`, 'info');
+            }
+        }
+
+        // Вспомогательные функции
+        function getTypeName(type) {
+            const typeNames = {
+                'light': 'Освещение',
+                'climate': 'Климат',
+                'security': 'Безопасность',
+                'appliance': 'Устройство'
+            };
+            return typeNames[type] || type;
+        }
+
+        // Переключение темы
+        function toggleTheme() {
+            document.body.classList.toggle('bg-dark');
+            document.body.classList.toggle('text-light');
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.toggle('bg-secondary');
+                card.classList.toggle('text-light');
+            });
+        }
+
+        // Простое уведомление
+        function showAlert(message, type = 'success') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 1050; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.remove();
+                }
+            }, 3000);
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', initializeDevices);
+    </script>
+</body>
+</html>

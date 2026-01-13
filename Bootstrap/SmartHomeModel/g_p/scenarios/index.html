@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Сценарии</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="bi bi-house-door"></i> Умный Дом
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="../dashboard.html">Панель</a>
+                <a class="nav-link active" href="index.html">Сценарии</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item active">Сценарии</li>
+            </ol>
+        </nav>
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 mb-0">Сценарии автоматизации</h1>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newScenarioModal">
+                <i class="bi bi-plus-circle"></i> Новый сценарий
+            </button>
+        </div>
+        
+        <p class="text-muted mb-4">Автоматические режимы работы вашего умного дома</p>
+        
+        <!-- Активные сценарии -->
+        <h3 class="h4 mb-3">Активные сценарии</h3>
+        <div class="row g-4 mb-5">
+            <!-- Сценарий 1 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card border-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🌅</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title">Доброе утро</h5>
+                        <p class="card-text text-muted small">Плавное пробуждение с 7:00 до 8:00</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Плавное включение света</li>
+                                <li>Подогрев пола в ванной</li>
+                                <li>Приготовление кофе</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success">Запустить сейчас</button>
+                            <button class="btn btn-outline-secondary btn-sm">Настроить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 2 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card border-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🏠</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title">Режим "Дома"</h5>
+                        <p class="card-text text-muted small">Комфортные настройки при присутствии</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Температура 22°C</li>
+                                <li>Фоновое освещение</li>
+                                <li>Музыка в гостиной</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success">Запустить сейчас</button>
+                            <button class="btn btn-outline-secondary btn-sm">Настроить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 3 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card border-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🎬</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title">Кинотеатр</h5>
+                        <p class="card-text text-muted small">Оптимальные настройки для просмотра фильмов</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Приглушение света</li>
+                                <li>Включение телевизора</li>
+                                <li>Закрытие штор</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success">Запустить сейчас</button>
+                            <button class="btn btn-outline-secondary btn-sm">Настроить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 4 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card border-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🌙</span>
+                            <span class="badge bg-success">Активен</span>
+                        </div>
+                        <h5 class="card-title">Ночной режим</h5>
+                        <p class="card-text text-muted small">Активируется в 23:00 ежедневно</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Выключение всего света</li>
+                                <li>Включение ночников</li>
+                                <li>Активация охраны</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success">Запустить сейчас</button>
+                            <button class="btn btn-outline-secondary btn-sm">Настроить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Неактивные сценарии -->
+        <h3 class="h4 mb-3">Неактивные сценарии</h3>
+        <div class="row g-4">
+            <!-- Сценарий 5 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🚶</span>
+                            <span class="badge bg-secondary">Неактивен</span>
+                        </div>
+                        <h5 class="card-title">Режим "Ушел"</h5>
+                        <p class="card-text text-muted small">Экономия энергии при отсутствии</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Выключение света</li>
+                                <li>Понижение температуры</li>
+                                <li>Активация охраны</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary">Активировать</button>
+                            <button class="btn btn-outline-primary btn-sm">Запустить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 6 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🌿</span>
+                            <span class="badge bg-secondary">Неактивен</span>
+                        </div>
+                        <h5 class="card-title">Эко-режим</h5>
+                        <p class="card-text text-muted small">Минимальное энергопотребление</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Температура 18°C</li>
+                                <li>Минимальное освещение</li>
+                                <li>Отключение ненужных приборов</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary">Активировать</button>
+                            <button class="btn btn-outline-primary btn-sm">Запустить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 7 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">🎉</span>
+                            <span class="badge bg-secondary">Неактивен</span>
+                        </div>
+                        <h5 class="card-title">Прием гостей</h5>
+                        <p class="card-text text-muted small">Праздничная атмосфера</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Яркое освещение</li>
+                                <li>Фоновая музыка</li>
+                                <li>Особая подсветка</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary">Активировать</button>
+                            <button class="btn btn-outline-primary btn-sm">Запустить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Сценарий 8 -->
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="fs-1">☔</span>
+                            <span class="badge bg-secondary">Неактивен</span>
+                        </div>
+                        <h5 class="card-title">Дождливый день</h5>
+                        <p class="card-text text-muted small">Уютные настройки в плохую погоду</p>
+                        <div class="mb-3">
+                            <small class="text-muted">Действия:</small>
+                            <ul class="small mb-0 ps-3">
+                                <li>Теплое освещение</li>
+                                <li>Включение обогрева</li>
+                                <li>Расслабляющая музыка</li>
+                            </ul>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-secondary">Активировать</button>
+                            <button class="btn btn-outline-primary btn-sm">Запустить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Расписание -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Расписание сценариев</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Сценарий</th>
+                                        <th>Расписание</th>
+                                        <th>Статус</th>
+                                        <th>Последний запуск</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Доброе утро</td>
+                                        <td>Ежедневно в 7:00</td>
+                                        <td><span class="badge bg-success">Активен</span></td>
+                                        <td>Сегодня 7:00</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Изменить</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ночной режим</td>
+                                        <td>Ежедневно в 23:00</td>
+                                        <td><span class="badge bg-success">Активен</span></td>
+                                        <td>Вчера 23:00</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Изменить</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Режим "Ушел"</td>
+                                        <td>При выходе из дома</td>
+                                        <td><span class="badge bg-secondary">Неактивен</span></td>
+                                        <td>2 дня назад</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Изменить</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Кинотеатр</td>
+                                        <td>Вручную</td>
+                                        <td><span class="badge bg-success">Активен</span></td>
+                                        <td>Вчера 20:30</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary">Изменить</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно создания сценария -->
+    <div class="modal fade" id="newScenarioModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Создание нового сценария</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Название сценария</label>
+                                <input type="text" class="form-control" placeholder="Например: 'Романтический вечер'">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Иконка</label>
+                                <select class="form-select">
+                                    <option>🌅 Утро</option>
+                                    <option>🌙 Ночь</option>
+                                    <option>🏠 Дом</option>
+                                    <option>🎬 Кино</option>
+                                    <option>🎉 Праздник</option>
+                                    <option>🌿 Эко</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Описание</label>
+                            <textarea class="form-control" rows="2" placeholder="Краткое описание сценария..."></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Триггер запуска</label>
+                            <select class="form-select">
+                                <option>По расписанию</option>
+                                <option>Вручную</option>
+                                <option>При уходе из дома</option>
+                                <option>При возвращении домой</option>
+                                <option>По команде голоса</option>
+                                <option>По времени заката/рассвета</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Действия сценария</label>
+                            <div class="border rounded p-3">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">Управление освещением</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">Настройка температуры</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">Включение музыки</a></label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">Управление шторами</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">Включение телевизора</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">Изменение режима безопасности</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Повторение</label>
+                            <select class="form-select">
+                                <option>Однократно</option>
+                                <option>Ежедневно</option>
+                                <option>По рабочим дням</option>
+                                <option>По выходным</option>
+                                <option>Еженедельно</option>
+                                <option>Ежемесячно</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary">Создать сценарий</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">Сценарии автоматизации • Умный Дом</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный Дом - Главная</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-house-door"></i> Умный Дом
+            </a>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <div class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold">Добро пожаловать в умный дом</h1>
+                    <p class="lead">Управляйте всем домом с одной панели</p>
+                    <a href="dashboard.html" class="btn btn-light btn-lg">Перейти к управлению</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="bi bi-house-check" style="font-size: 8rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Быстрый доступ -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Быстрый доступ</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <a href="devices/lights.html" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-lightbulb text-warning" style="font-size: 3rem;"></i>
+                        <h3 class="card-title mt-3">Освещение</h3>
+                        <p class="card-text">Управление светом во всем доме</p>
+                        <span class="badge bg-warning">12 устройств</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="devices/climate.html" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-thermometer-half text-info" style="font-size: 3rem;"></i>
+                        <h3 class="card-title mt-3">Климат</h3>
+                        <p class="card-text">Температура и влажность</p>
+                        <span class="badge bg-info">22°C в гостиной</span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="scenarios/index.html" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-play-circle text-success" style="font-size: 3rem;"></i>
+                        <h3 class="card-title mt-3">Сценарии</h3>
+                        <p class="card-text">Автоматические режимы</p>
+                        <span class="badge bg-success">8 сценариев</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Статус системы -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Статус системы</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 col-md-3 mb-3">
+                                <div class="text-center">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0">Безопасность</p>
+                                    <small class="text-muted">Активна</small>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <div class="text-center">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0">Энергия</p>
+                                    <small class="text-muted">1.2 кВт</small>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <div class="text-center">
+                                    <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0">Устройства</p>
+                                    <small class="text-muted">2 отключены</small>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <div class="text-center">
+                                    <i class="bi bi-wifi text-info" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0">Сеть</p>
+                                    <small class="text-muted">Стабильно</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Последние действия</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item px-0">
+                                <small class="text-muted">2 минуты назад</small>
+                                <p class="mb-1">Свет в гостиной включен</p>
+                            </div>
+                            <div class="list-group-item px-0">
+                                <small class="text-muted">10 минут назад</small>
+                                <p class="mb-1">Температура повышена до 22°C</p>
+                            </div>
+                            <div class="list-group-item px-0">
+                                <small class="text-muted">1 час назад</small>
+                                <p class="mb-1">Сценарий "Ночь" активирован</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Призыв к действию -->
+    <div class="bg-light py-5">
+        <div class="container text-center">
+            <h2>Готовы начать?</h2>
+            <p class="lead mb-4">Присоединяйтесь к управлению вашим умным домом</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="dashboard.html" class="btn btn-primary btn-lg">
+                    <i class="bi bi-speedometer2"></i> Панель управления
+                </a>
+                <a href="devices/lights.html" class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-lightbulb"></i> Управление светом
+                </a>
+                <a href="scenarios/index.html" class="btn btn-outline-success btn-lg">
+                    <i class="bi bi-play-circle"></i> Сценарии
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">Умный Дом • TopCollege • 2026</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
