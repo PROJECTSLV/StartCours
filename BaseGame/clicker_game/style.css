@@ -1,0 +1,247 @@
+/* Сбрасываем отступы и настраиваем базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Шапка */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+h1 i {
+    color: #FFD700;
+    margin-right: 10px;
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.score, .next-level {
+    background: #f8f9fa;
+    padding: 15px 25px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    min-width: 250px;
+}
+
+.score i {
+    color: #FFD700;
+    font-size: 1.5rem;
+}
+
+.next-level i {
+    color: #4CAF50;
+    font-size: 1.5rem;
+}
+
+#score, #next-level-count {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.score span:last-child {
+    color: #667eea;
+}
+
+.next-level span:last-child {
+    color: #4CAF50;
+}
+
+/* Основная картинка */
+.main-image-container {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+}
+
+#main-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 5px solid white;
+    transition: transform 0.3s ease;
+}
+
+#main-image:hover {
+    transform: scale(1.02);
+}
+
+.image-info {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Область для кликов */
+.click-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#click-button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 auto 15px;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    min-width: 250px;
+}
+
+#click-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+#click-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+}
+
+#click-button i {
+    font-size: 1.8rem;
+}
+
+.click-info {
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.click-info i {
+    color: #667eea;
+}
+
+/* Прогресс бар */
+.progress-container {
+    margin: 30px 0;
+}
+
+.progress-bar {
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+
+.progress-text {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+/* Подвал */
+footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.instructions {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.instructions h3 {
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instructions h3 i {
+    color: #667eea;
+}
+
+.instructions p {
+    margin-bottom: 8px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .score, .next-level {
+        min-width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+    
+    #click-button {
+        padding: 15px 30px;
+        font-size: 1.3rem;
+    }
+}
